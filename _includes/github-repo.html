@@ -1,0 +1,9 @@
+{% assign repo = include.repo | strip %}
+<a class="github-repo-card" href="https://github.com/{{ repo }}" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-github"></i>
+    <span class="github-repo-text">
+        <span class="github-repo-label">{% if include.label %}{{ include.label }}{% else %}View the code on GitHub{% endif %}</span>
+        <span class="github-repo-name">{{ repo }}</span>
+    </span>
+    <i class="fa-solid fa-arrow-up-right-from-square github-repo-arrow"></i>
+</a>

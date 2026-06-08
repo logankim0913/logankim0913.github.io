@@ -1,0 +1,10 @@
+{%- if site.resume-url contains '://' -%}
+{{- site.resume-url -}}
+{%- else -%}
+{%- assign resume_href = site.resume-url | replace: '\\', '/' | replace: './', '' | replace: '.\\', '' -%}
+{%- assign first_char = resume_href | slice: 0, 1 -%}
+{%- unless first_char == '/' -%}
+{%- assign resume_href = resume_href | prepend: '/' -%}
+{%- endunless -%}
+{{- resume_href | relative_url -}}
+{%- endif -%}

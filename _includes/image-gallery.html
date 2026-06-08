@@ -1,23 +1,38 @@
 {% assign image_paths = include.images | split: ", " %}
 {% assign gallery_height = include.height | default: "300" %}
+{% if include.captions %}
+  {% assign caption_list = include.captions | split: "|" %}
+{% endif %}
 
 <div class="image-gallery" style="--gallery-height: {{ gallery_height }}px;">
   {% for image_path in image_paths %}
       {% assign image_name = image_path | strip %}
+      {% assign current_caption = "" %}
+      {% if caption_list %}
+          {% assign current_caption = caption_list[forloop.index0] | strip %}
+      {% endif %}
+      <figure class="gallery-item">
       {% if image_name contains 'https://' %}
           <img 
               src="{{ image_name }}"
-              alt="Web image"
+              alt="{% if current_caption != '' %}{{ current_caption }}{% else %}Web image{% endif %}"
               loading="lazy"
           />
       {% else %}
           {% assign page_url_without_index = page.url | remove: 'index' | remove: '.html' %}
           <img 
               src="{{ page_url_without_index }}{{ image_name }}" 
-              alt="{{image_name}}"
+              alt="{% if current_caption != '' %}{{ current_caption }}{% else %}{{ image_name }}{% endif %}"
               loading="lazy"
               onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');"
           />
       {% endif %}
+      {% if current_caption != '' %}
+          <figcaption>{{ current_caption }}</figcaption>
+      {% endif %}
+      </figure>
   {% endfor %}
 </div>
+{% if include.caption %}
+<p class="gallery-caption">{{ include.caption }}</p>
+{% endif %}

@@ -1,110 +1,41 @@
 ---
 layout: post
-title: LAIKA, the robot dog
-description:  Developing a quadrupedal robot controlled with voice commands; a perfect "pet" project
+title: LAIKA, the quadrupedal robot
+description: Designed and built a 12-DOF quadrupedal robot dog from the ground up—Fusion 360 CAD and 3D-printed structure, inverse-kinematics gait control on a ROS framework, and Simulink locomotion simulation.
 skills: 
-  - Control Algorithm 
   - Robotics
+  - Control Systems
+  - Inverse Kinematics
+  - ROS
   - Power Management
-  - Human-Robot Interaction
+  - 3D modeling
 
-main-image: /laika1.jpg
+main-image: /laika_cover.jpg
 ---
 
----
-# Header 1 
-Used for the title (already generated automatically at the top)
-## Header 2  
-Use this for the header of each section
-### Header 3 
-Use this to have subsection if needed
+## Project Overview
+LAIKA is a 12-DOF quadrupedal robot dog I built based on inspiration from Boston Dynamic's Spot robot. The goal was to build a robot that can move reliably, be tested iteratively, and serve as a foundation for exploring efficient gait, sensor-based feedback control, and robotic design.
+
+{% include image-gallery.html images="laika_cover.jpg" height="400" captions="full robot assembly" %}
 
 
-## Embedding images 
-### External images
-{% include image-gallery.html images="https://live.staticflickr.com/65535/52821641477_d397e56bc4_k.jpg, https://live.staticflickr.com/65535/52822650673_f074b20d90_k.jpg" height="400"%}
-<span style="font-size: 10px">"Starship Test Flight Mission" from https://www.flickr.com/photos/spacex/52821641477/</span>  
-You can put in multiple entries. All images will be at a fixed height in the same row. With smaller window, they will switch to columns.  
+## Showcase
+{% include image-gallery.html images="images/3dprint.jpg, images/3dprint2.jpg" height="400" captions="3D-printed leg parts | more 3D prints" %}
+{% include image-gallery.html images="images/legchk.gif, images/front.jpg" height="400" captions="movement testing | front assembly" %}
+{% include image-gallery.html images="images/half.jpg, images/bodyassemb.jpg" height="400" captions="leg joints done | total body assembly" %}
+On the mechanical side, I modeled the robot in Fusion 360 and 3D-printed-body-parts for assmebly, which took me around 3 days because of some failed printing jobs. For motion, I derived DH parameters for forward kinematics and implemented gait logic through inverse kinematics, so leg trajectories could be planned systematically rather than tuned joint by joint.
 
-### Embeed images
-{% include image-gallery.html images="project2.jpg" height="400" %} 
-place the images in project folder/images then update the file path.   
+{% include image-gallery.html images="images/dh.jpg, images/rand.jpg" height="400" captions="DH analysis for transformation matrix instantiation | note for DH parameter calculation" %}
 
 
-## Embedding youtube video
-The second video has the autoplay on. copy and paste the 11-digit id found in the url link. <br>
-*Example* : https://www.youtube.com/watch?v={**MhVw-MHGv4s**}&ab_channel=engineerguy
-{% include youtube-video.html id="MhVw-MHGv4s" autoplay= "false"%}
-{% include youtube-video.html id="XGC31lmdS6s" autoplay = "true" %}
+On the software side, I deployed a ROS-based framework on an Ubuntu-booted Raspberry Pi to keep sensing, control, and testing modules organized, and wrote Python test scripts to validate servos and sensors during bring-up before attempting full locomotion. To de-risk gait development, I used MATLAB Simulink to simulate movement and navigation in a repeatable environment, refining control assumptions before deploying changes to hardware.
 
-you can also set up custom size by specifying the width (the aspect ratio has been set to 16/9). The default size is 560 pixels x 315 pixels.  
+{% include image-gallery.html images="images/simulink.jpg" height="400" captions="Simulink locomotion simulation" %}
 
-The width of the video below. Regardless of initial width, all the videos is responsive and will fit within the smaller screen.
-{% include youtube-video.html id="tGCdLEQzde0" autoplay = "false" width= "900px" %}  
+For power, I calculated a typical operating current of ~13.25 A and sized the system for roughly 22 minutes of runtime under expected load, which directly informed battery selection and the tradeoff between runtime, weight, and mechanical performance.
 
-<br>
+{% include image-gallery.html images="images/pwrcalc.jpg" height="400" captions="power analysis" %}
 
-## Adding a hozontal line
----
+Then, I proceeded to write explorational scripts to practice coordinated gaits on the actual robot.
 
-## Starting a new line
-leave two spaces "  " at the end or enter <br>
-
-## Adding bold text
-this is how you input **bold text**
-
-## Adding italic text
-Italicized text is the *cat's meow*.
-
-## Adding ordered list
-1. First item
-2. Second item
-3. Third item
-4. Fourth item
-
-## Adding unordered list
-- First item
-- Second item
-- Third item
-- Fourth item
-
-## Adding code block
-```ruby
-def hello_world
-  puts "Hello, World!"
-end
-```
-
-```python
-def start()
-  print("time to start!")
-```
-
-```javascript
-let x = 1;
-if (x === 1) {
-  let x = 2;
-  console.log(x);
-}
-console.log(x);
-
-```
-
-## Adding external links
-[Wikipedia](https://en.wikipedia.org)
-
-
-## Adding block quote
-> A blockquote would look great if you need to highlight something
-
-
-## Adding table 
-
-| Header 1 | Header 2 |
-|----------|----------|
-| Row 1, Col 1 | Row 1, Col 2 |
-| Row 2, Col 1 | Row 2, Col 2 |
-
-make sure to leave aline betwen the table and the header
-
-
+{% include youtube-video.html id="/XGnWq85dWcM" autoplay="false" %}

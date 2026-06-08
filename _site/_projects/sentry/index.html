@@ -37,7 +37,7 @@
         <a href="/projects/">
             <span>Projects</span>
         </a>
-        <a href=".\assets\resume\ENG_Doyun_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer">
+        <a href="/assets/resume/ENG_Doyun_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer">
             <span>Resume</span>
         </a>
     </div>
@@ -55,7 +55,7 @@
         <a href="/projects/">
             <span>Projects</span>
         </a>
-        <a href=".\assets\resume\ENG_Doyun_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer">
+        <a href="/assets/resume/ENG_Doyun_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer">
             <span>Resume</span>
         </a>
     </div>
@@ -67,37 +67,114 @@
        
         
                
-        <img src="/_projects/sentry/sonos.png" alt="Sonos Teardown image">
+        <img src="/_projects/sentry/thumbnail.jpg" alt="Face Tracking Turret image">
         
         <div class="title-header">
-            <h1>Sonos Teardown</h1>
+            <h1>Face Tracking Turret</h1>
         </div>
         
         <div class="project-description">
             <h2>Project Overview</h2>
-            <p>Conducted detailed teardown analysis of Sonos Era speaker, documenting internal components, driver configuration, and PCB design. Created technical documentation with photos and assembly insights for engineering reference.</p>
+            <p>Built a 4-DOF face-tracking turret with OpenCV-based detection, ESP32 servo control, and PD control tuned for smooth real-time tracking at ~30 FPS.</p>
         </div>
         <div class="skills-card">
             <h2>Skills Used</h2> 
             <div class="skills-list">
                 
-                <span class="skill">drumel</span>    
+                <span class="skill">Computer Vision</span>    
                 
-                <span class="skill">microprobing</span>    
+                <span class="skill">Embedded Systems</span>    
                 
-                <span class="skill">Electronics Teardown</span>    
+                <span class="skill">Control Systems</span>    
                 
-                <span class="skill">PCB analysis</span>    
-                
-                <span class="skill">audio system design</span>    
+                <span class="skill">Mechatronics</span>    
                 
             </div>
         </div>
     </div>
       
     <div class="content">
-        <h1 id="this-is-another-demo">This is another demo</h1>
+        <h2 id="github-source">GitHub Source</h2>
 
+<p><a class="github-repo-card" href="https://github.com/logankim0913/face-tracking-turret" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-github"></i>
+    <span class="github-repo-text">
+        <span class="github-repo-label">View the code on GitHub</span>
+        <span class="github-repo-name">logankim0913/face-tracking-turret</span>
+    </span>
+    <i class="fa-solid fa-arrow-up-right-from-square github-repo-arrow"></i>
+</a></p>
+
+<h2 id="project-overview">Project Overview</h2>
+<p>This project is a 4-DOF face-tracking turret that detects a person’s face and moves its joints in real time to keep the target centered in view. A small Raspberry Pi camera v1.3 is used to capture video, and the Raspberry Pi 3 processes the videostream to control the turret servos via ESP32.</p>
+
+<h2 id="showcase">Showcase</h2>
+
+<div class="image-gallery" style="--gallery-height: 400px;">
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/_projects/sentry/images/turret.jpg" alt="hardware structure of the turret: composed of 5 DOF turret (one joint is completely locked), Raspberry Pi 3B+ with camera, ESP32, and breadboard for wiring" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>hardware structure of the turret: composed of 5 DOF turret (one joint is completely locked), Raspberry Pi 3B+ with camera, ESP32, and breadboard for wiring</figcaption>
+      
+      </figure>
+  
+</div>
+
+<p>It’s actually quite a bit of time since I got into the concept of “face tracking.” It was my introduction to computer vision, which seemed like a magic to me (still is). My first objective was to move the SG90 servo from the Arduino kit by moving my face across the webcam.</p>
+
+<p>And then I wanted to build the actual movable joint that can take that tracking motion one dimension higher; hence the turret. It has a relatively simple structure with 5 revolute joints, composed of MG 996R servos, and 5 VDC supply to power up the servos.</p>
+
+<p>With the mechanical side roughly working, the rest of the project became a software handoff problem: the <code class="language-plaintext highlighter-rouge">pi_face_tracking.py</code> script starts the vision pipeline, finds the face position from the camera feed, and sends target movement commands over serial, while the <code class="language-plaintext highlighter-rouge">turret_servo_control.ino</code> file on the ESP32 listens for those commands and turns them into servo motion.</p>
+
+<div class="image-gallery" style="--gallery-height: 400px;">
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/_projects/sentry/images/pipeline_diag.png" alt="diagram of the system pipeline" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>diagram of the system pipeline</figcaption>
+      
+      </figure>
+  
+</div>
+
+<p>I was only familiar with OpenCV’s HaarCascade model for face detection, but I soon realized that its face detection rate is horrendous.</p>
+
+<div class="youtube-container" style="--max-width: 560px">
+    <div class="youtube-aspect-ratio">
+        <iframe src="https://www.youtube.com/embed/TSN5yqj1AkM?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+        </iframe>
+    </div>
+</div>
+<p>As you can see, the HaarCascade-base face detection has high frame speed, but the accuracy is really terrible. So, I explored more modern face detection model: Yunet. It was more resource-intense than HaarCascade but still light enough to run without much issues:</p>
+
+<div class="youtube-container" style="--max-width: 560px">
+    <div class="youtube-aspect-ratio">
+        <iframe src="https://www.youtube.com/embed/M6DuHUNKxYM?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+        </iframe>
+    </div>
+</div>
+<p>I was very surprised at the accuracy improvement compared to HaarCascade, albeit the fps is noticeably lower. Since it was practically impossible for the turret to track my face with HaarCascade, I tested the turret tracking with Yunet:</p>
+
+<div class="youtube-container" style="--max-width: 560px">
+    <div class="youtube-aspect-ratio">
+        <iframe src="https://www.youtube.com/embed/734P45mJgzk?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+        </iframe>
+    </div>
+</div>
+<p>It came out pretty nicely. The wires are messy, and the build quality is admittedly clumsy; a quick design for pcb will make it far more delicate and robust (the turret killed its own wiring a few times by slamming into them).</p>
 
     </div>
 </div>
@@ -116,7 +193,7 @@
             <a href="/projects/">
                 <span>Projects</span>
             </a>
-            <a href=.\assets\resume\ENG_Doyun_Kim_Resume.pdf target="_blank" rel="noopener noreferrer">
+            <a href="/assets/resume/ENG_Doyun_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer">
                 <span>Resume</span>
             </a>
         </div>

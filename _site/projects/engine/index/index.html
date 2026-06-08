@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <script src="/assets/js/script.js"></script>
+
+    
+    <title>Doyun Kim's Portfolio</title>
+    
+
+</head>
+<body>
+    <!-- NAVBAR -->
+     <!-- _includes/nav.html -->
+<nav>
+    <div class="left">
+        <a href="/">Doyun Kim</a>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="right desktop-nav">
+        <a href="/">
+            <span>Home</span>
+        </a>
+        <a href="/projects/">
+            <span>Projects</span>
+        </a>
+        <a href="/assets/resume/ENG_Doyun_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer">
+            <span>Resume</span>
+        </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fa fa-bars fa-2x"></i>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav">
+        <a href="/">
+            <span>Home</span>
+        </a>
+        <a href="/projects/">
+            <span>Projects</span>
+        </a>
+        <a href="/assets/resume/ENG_Doyun_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer">
+            <span>Resume</span>
+        </a>
+    </div>
+</nav>
+
+     <div class="page"><div class="post-view">
+    <div class="summary">
+        
+       
+        
+               
+        <img src="/_projects/engine/engine_cover.jpg" alt="AI Vision Autonomous Wheelchair image">
+        
+        <div class="title-header">
+            <h1>AI Vision Autonomous Wheelchair</h1>
+        </div>
+        
+        <div class="project-description">
+            <h2>Project Overview</h2>
+            <p>Developed a ROS1-based autonomous wheelchair navigation system with YOLOv8 vision, RGB-D sensing, and Gazebo simulation, while redesigning onboard power distribution and integrating embedded compute on a Quantum Q6 Edge platform for real-time, crowd-aware mobility.</p>
+        </div>
+        <div class="skills-card">
+            <h2>Skills Used</h2> 
+            <div class="skills-list">
+                
+                <span class="skill">Computer Vision</span>    
+                
+                <span class="skill">Linux (Ubuntu)</span>    
+                
+                <span class="skill">ROS</span>    
+                
+                <span class="skill">Gazebo Simulation</span>    
+                
+                <span class="skill">Embedded Systems</span>    
+                
+            </div>
+        </div>
+    </div>
+      
+    <div class="content">
+        <h2 id="project-overview">Project Overview</h2>
+<p>As part of the college capstone program, I worked for Cyberworks Robotics to rework the autonomous wheelchair platform built for real-time, crowd-aware navigation in shared indoor spaces. The project was focused on developing a binary heuristics for the wheelchair’s autonomous navigation stack to decide whether it is safe for the wheelchair to proceed or not. My work focused on developing the perception pipeline from crowd detection to avoid decision(i.e. stop navigation temporarily) and integrating the software stack with the physical wheelchair.</p>
+
+<div class="image-gallery" style="--gallery-height: 400px;">
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/projects/engine//images/diagram2.png" alt="diagram for system overview" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>diagram for system overview</figcaption>
+      
+      </figure>
+  
+</div>
+
+<h2 id="showcase">Showcase</h2>
+
+<div class="youtube-container" style="--max-width: 560px">
+    <div class="youtube-aspect-ratio">
+        <iframe src="https://www.youtube.com/embed/dpvz9xpOyQI?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+        </iframe>
+    </div>
+</div>
+<p>On the software side, I helped design and validate a ROS1-based pipeline that combined YOLOv8 object detection, OpenVINO inference, RGB-D sensing, TF transforms, and custom binary heuristics for crowd-aware navigation decisions. This includes writing ROS nodes that set up ROS topics to establish communication channel between sensors and YOLOv8 model for pedestrian recognition, outputting the binary flag for avoid decision, and forwarding motor commands to Arduino.</p>
+
+<p>The validation of the pipeline was done entirely in Gazebo with PedSim to simulate how the autonomous navigation logic behaves in the presence of spawned pedestrian entities.</p>
+
+<div class="image-gallery" style="--gallery-height: 400px;">
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/projects/engine//images/demo.png" alt="demo showing the entire software pipeline running in Gazebo simulation; it shows the binary flag for avoid decision, SLAM in place with LiDAR, and Gazebo simulation environment with spawned wheelchair and pedestrian entities" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>demo showing the entire software pipeline running in Gazebo simulation; it shows the binary flag for avoid decision, SLAM in place with LiDAR, and Gazebo simulation environment with spawned wheelchair and pedestrian entities</figcaption>
+      
+      </figure>
+  
+</div>
+
+<p>On the hardware side, I redesigned and rewired onboard power distribution system to supply power from the 24 V battery rail to sensors and computing hardware. While the wheelchair is a proprietary product from a 3rd party vendor, it is quite challenging to infiltrate its native firmware to overwrite the motor signal externally. Instead, I designed a simple digital-to-analog conversion circuit to translate the PWM input from Arduino Mega to analog signal that the wheelchair’s motor controller recognizes as a valid joystick command.</p>
+
+<div class="image-gallery" style="--gallery-height: 400px;">
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/projects/engine//images/custom_pcb.jpg" alt="signal conversion board with Arduino Mega" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>signal conversion board with Arduino Mega</figcaption>
+      
+      </figure>
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/projects/engine//images/pcb_sch.jpg" alt="schematic for signal conversion circuit" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>schematic for signal conversion circuit</figcaption>
+      
+      </figure>
+  
+</div>
+
+<div class="image-gallery" style="--gallery-height: 400px;">
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/projects/engine//images/powerdist_diagram.jpg" alt="hardware diagram for power distribution" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>hardware diagram for power distribution</figcaption>
+      
+      </figure>
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/projects/engine//images/wheelchair.jpg" alt="wheelchair during assembly and testing" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>wheelchair during assembly and testing</figcaption>
+      
+      </figure>
+  
+</div>
+
+<p>Unfortunately, the hardware system is not fully functional to boot up the software stack; the hardware demo couldn’t be made.There was a short in the power distribution while I crimped wires together, and thus not all peripheral devices were powered up safely. As a result, everything is tested on the Gazebo simulation, so the next step is to resolve the hardware issue and conduct real-world testing.</p>
+
+    </div>
+</div>
+
+</div>
+
+     
+</body>
+
+    <footer>
+    <div class="footer-content">
+        <div class="links">
+            <a href="/">
+                <span>Home</span>
+            </a>
+            <a href="/projects/">
+                <span>Projects</span>
+            </a>
+            <a href="/assets/resume/ENG_Doyun_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                <span>Resume</span>
+            </a>
+        </div>
+    </div>
+    <div class="license">
+        <span>For any question or suggestion for the portfolio template or projects, reach out <a class="help" href="mailto:admin@lowinertia.com"> Here</a> </span>
+        <p>Free-To-Engineer portfolio template © 2025 by lowinertia.com is licensed under <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1">CC BY 4.0</a></p>
+    </div>
+</footer>
+
+</html>

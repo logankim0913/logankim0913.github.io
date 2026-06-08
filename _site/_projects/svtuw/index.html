@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <script src="/assets/js/script.js"></script>
+
+    
+    <title>Doyun Kim's Portfolio</title>
+    
+
+</head>
+<body>
+    <!-- NAVBAR -->
+     <!-- _includes/nav.html -->
+<nav>
+    <div class="left">
+        <a href="/">Doyun Kim</a>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="right desktop-nav">
+        <a href="/">
+            <span>Home</span>
+        </a>
+        <a href="/projects/">
+            <span>Projects</span>
+        </a>
+        <a href="/assets/resume/ENG_Doyun_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer">
+            <span>Resume</span>
+        </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fa fa-bars fa-2x"></i>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav">
+        <a href="/">
+            <span>Home</span>
+        </a>
+        <a href="/projects/">
+            <span>Projects</span>
+        </a>
+        <a href="/assets/resume/ENG_Doyun_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer">
+            <span>Resume</span>
+        </a>
+    </div>
+</nav>
+
+     <div class="page"><div class="post-view">
+    <div class="summary">
+        
+       
+        
+               
+        <img src="/_projects/svtuw/svtuw.jpg" alt="Solar Vehicle Power Board image">
+        
+        <div class="title-header">
+            <h1>Solar Vehicle Power Board</h1>
+        </div>
+        
+        <div class="project-description">
+            <h2>Project Overview</h2>
+            <p>Designed a high-voltage battery control and power distribution PCB implementing contactor and precharge control, and protected power delivery for a solar race car.</p>
+        </div>
+        <div class="skills-card">
+            <h2>Skills Used</h2> 
+            <div class="skills-list">
+                
+                <span class="skill">analog circuit design</span>    
+                
+                <span class="skill">power electronics</span>    
+                
+                <span class="skill">schematic layout</span>    
+                
+                <span class="skill">PCB design</span>    
+                
+                <span class="skill">embedded systems</span>    
+                
+            </div>
+        </div>
+    </div>
+      
+    <div class="content">
+        <h2 id="project-overview">Project Overview</h2>
+<p>As an Electrical Engineer on the UW Solar Vehicle Team, I worked on the power electronics that bring the solar car to life. My work centered on two boards: a high-voltage battery board that safely energizes the car from its 126 V nominal main pack, and a 24 V power distribution board that feeds power to the rest of the car’s subsystems. Since this is a high-power, safety-critical system, the focus was always on doing it safely, reliably, and in a way the team could actually test before trusting it on the car.</p>
+
+<div class="image-gallery" style="--gallery-height: 400px;">
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/_projects/svtuw/images/image.png" alt="the power electronics boards I designed for the solar car" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>the power electronics boards I designed for the solar car</figcaption>
+      
+      </figure>
+  
+</div>
+
+<h2 id="showcase">Showcase</h2>
+<p>The first board is the high-voltage battery board. Connecting a 126 V pack straight to the car is a great way to fry something, so the board uses a precharge sequence to limit inrush current before fully energizing the system. It also includes a current-measurement shunt to keep an eye on what’s happening during startup, and the whole switching sequence is managed by STM32-based logic that drives the relays in the right order.</p>
+
+<div class="image-gallery" style="--gallery-height: 400px;">
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/_projects/svtuw/images/hv_battery_board.jpg" alt="high-voltage battery board that safely energizes the car from the 126 V main pack" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>high-voltage battery board that safely energizes the car from the 126 V main pack</figcaption>
+      
+      </figure>
+  
+</div>
+
+<p>The second board is the 24 V power distribution board, which I designed in KiCAD. It takes power from the battery and routes it out to eight independent subsystems across the car. I laid it out as a 4-layer PCB and sized each trace according to the load current it was expected to carry, so the board stays organized and doesn’t cook a trace under real operating conditions.</p>
+
+<div class="image-gallery" style="--gallery-height: 400px;">
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/_projects/svtuw/images/PowerDistBoard.png" alt="KiCAD layout of the 24 V power distribution board: a 4-layer PCB feeding 8 independent subsystems" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>KiCAD layout of the 24 V power distribution board: a 4-layer PCB feeding 8 independent subsystems</figcaption>
+      
+      </figure>
+  
+</div>
+
+<p>Before committing anything to a final board, I simulated the key circuit behavior in LTspice and then built a breakout board to actually test the power source selection logic. This is where it got interesting: during testing I noticed a leakage current from the secondary source that caused a small voltage sag at the output when the relay closed. I went back into LTspice to dig into it, found the root cause, and fixed the design.</p>
+
+<div class="image-gallery" style="--gallery-height: 400px;">
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/_projects/svtuw/images/breakout_board.jpg" alt="breakout board for testing the power source selection logic" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>breakout board for testing the power source selection logic</figcaption>
+      
+      </figure>
+  
+      
+      
+      
+      <figure class="gallery-item">
+      
+          
+          <img src="/_projects/svtuw/images/breadout2.jpg" alt="another breakout board printed for testing STM32" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');" />
+      
+      
+          <figcaption>another breakout board printed for testing STM32</figcaption>
+      
+      </figure>
+  
+</div>
+
+<p>The video below shows one of those source-selection tests, checking whether one voltage source is correctly prioritized over the other when the relay closes.</p>
+
+<div class="youtube-container" style="--max-width: 560px">
+    <div class="youtube-aspect-ratio">
+        <iframe src="https://www.youtube.com/embed/o9TH71AT8ww?mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+        </iframe>
+    </div>
+</div>
+
+<p>Overall, this project gave me a ton of hands-on practice connecting schematic design, PCB layout, simulation, and real-world testing—especially the part where the bench results don’t match the simulation and you have to figure out why.</p>
+
+    </div>
+</div>
+
+</div>
+
+     
+</body>
+
+    <footer>
+    <div class="footer-content">
+        <div class="links">
+            <a href="/">
+                <span>Home</span>
+            </a>
+            <a href="/projects/">
+                <span>Projects</span>
+            </a>
+            <a href="/assets/resume/ENG_Doyun_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                <span>Resume</span>
+            </a>
+        </div>
+    </div>
+    <div class="license">
+        <span>For any question or suggestion for the portfolio template or projects, reach out <a class="help" href="mailto:admin@lowinertia.com"> Here</a> </span>
+        <p>Free-To-Engineer portfolio template © 2025 by lowinertia.com is licensed under <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1">CC BY 4.0</a></p>
+    </div>
+</footer>
+
+</html>
