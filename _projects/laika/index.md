@@ -30,7 +30,7 @@ On the mechanical side, I modeled the robot in Fusion 360 and 3D-printed-body-pa
 
 On the software side, I deployed a ROS-based framework on an Ubuntu-booted Raspberry Pi to keep sensing, control, and testing modules organized, and wrote Python test scripts to validate servos and sensors during bring-up before attempting full locomotion. To de-risk gait development, I used MATLAB Simulink to simulate movement and navigation in a repeatable environment, refining control assumptions before deploying changes to hardware.
 
-{% include image-gallery.html images="images/simulink.jpg" height="400" captions="Simulink locomotion simulation" %}
+{% include image-gallery.html images="images/simulink.jpg, images/nav_sim.jpg" height="400" captions="Simulink locomotion simulation | simulating robot's navigation with obstacles" %}
 
 For power, I calculated a typical operating current of ~13.25 A and sized the system for roughly 22 minutes of runtime under expected load, which directly informed battery selection and the tradeoff between runtime, weight, and mechanical performance.
 
